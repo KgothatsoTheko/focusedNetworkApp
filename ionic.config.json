@@ -1,0 +1,7 @@
+{
+  "name": "focusNetworkApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
