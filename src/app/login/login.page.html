@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <img src="../../assets/focusNetwork-logo.png" width = "90px" alt="logo"/>
+      <ion-title class="ion-no-margin ion-text-center">Welcome To Focus Network</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-align-items-end" [fullscreen]="true">
+  <swiper-container class="cons" [pagination]="true" [navigation]="true">
+    <swiper-slide class="slideSwipe">Slide 1</swiper-slide>
+    <swiper-slide class="slideSwipe">Slide 2</swiper-slide>
+    <swiper-slide class="slideSwipe">Slide 3</swiper-slide>
+  </swiper-container>
+  <ion-card class="ion-justify-content-center ion-padding magenta-bg black border-radius-20px">
+    <ion-col>
+    <ion-input mode="md" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Email">
+      <ion-icon slot="start" name="mail"></ion-icon>
+    </ion-input><br><br>
+    <ion-input mode="md" class="custom" type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
+      <ion-icon slot="start" name="lock-closed"></ion-icon>
+    </ion-input>
+    </ion-col>
+    <p class="ion-text-center white">Forgot Password?</p>
+    <ion-button expand="block" fill="outline" shape="round">Login</ion-button>
+    <p class="ion-text-center white">Don't have an account?</p>
+    <p class="ion-text-center pointer b">Create an account</p>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

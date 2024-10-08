@@ -35,3 +35,42 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+//colors
+$magenta: #e51e92;
+$black: #000000;
+$white: #fff;
+
+.magenta-bg {
+    background-color: $magenta;
+}
+
+.magenta {
+    color: $magenta;
+}
+
+.black {
+    color: $black;
+}
+
+.b:hover {
+    color: $white
+}
+
+.white {
+    color: $white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.border-radius-20px {
+    border-radius: 20px;
+}
