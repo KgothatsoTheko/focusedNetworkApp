@@ -1,0 +1,42 @@
+
+<ion-toolbar>
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <!-- <ion-title class="ion-no-margin ion-text-center">Welcome To <span class="">Focused</span> Network</ion-title> -->
+     <span class="focused font-size-38px">Sign Up, it's free</span>
+  </ion-row>
+  <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
+    <span class="network margin-left-6px">NETWORK</span>
+  </ion-row> -->
+</ion-toolbar>
+
+<ion-content class="ion-align-items-end" [fullscreen]="true">
+<img class="full-width" src="../../assets/images/focusednetwork-3.jpg" alt="image"/>
+<ion-card class="ion-justify-content-center ion-padding magenta-bg black border-radius-20px">
+  <form [formGroup]="registerForm">
+    <ion-col>
+      <ion-input formControlName="fullName" mode="md" class="custom" type="text" label-placement="stacked" fill="outline" placeholder="Enter Full Name">
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+      </ion-input><br><br>
+      <ion-input formControlName="dateOfBirth" mode="md" class="custom" type="date" label-placement="stacked" fill="outline" placeholder="Enter Your Date Of Birth">
+        <ion-icon slot="start" name="mail"></ion-icon>
+      </ion-input><br><br>
+      <ion-input formControlName="email" mode="md" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Email">
+        <ion-icon slot="start" name="mail"></ion-icon>
+      </ion-input><br><br>
+      <ion-input formControlName="password" mode="md" class="custom" type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
+        <ion-icon slot="start" name="lock-closed"></ion-icon>
+      </ion-input>
+      </ion-col>
+  </form>
+  <ion-button expand="block" fill="solid" shape="round" (click)="register()">SIGN UP</ion-button>
+  <p class="ion-text-center white">Already have an account?</p>
+  <p class="ion-text-center pointer b" [routerLink]="['/login']">Login</p>
+</ion-card>
+</ion-content>
+
+<ion-footer>
+<ion-toolbar>
+  <ion-title class="ion-text-center">Footer</ion-title>
+</ion-toolbar>
+</ion-footer>
+

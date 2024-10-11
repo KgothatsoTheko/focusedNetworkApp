@@ -1,1 +1,29 @@
-<p>landing works!!</p>
+<ion-header>
+    <ion-toolbar >
+      <ion-row>
+        <ion-col>
+          <ion-row class="ion-align-items-start ion-justify-content-center">
+            <img src="../../assets/focusNetwork-logo.png" width = "90px" alt="logo"/>
+          </ion-row>
+          <ion-row class="ion-align-items-start ion-justify-content-center">
+            <span class="focused font-size-38px">Focused</span>
+          </ion-row>
+          <ion-row class="ion-align-items-start ion-justify-content-center">
+            <span class="network margin-left-6px">NETWORK</span>
+            </ion-row>
+        </ion-col>
+        <ion-col class="ion-align-items-center ion-justify-content-center flex column">
+          <h3 class="ion-no-margin text-center">Join the <span class="focused font-size-25px">Sisterhood</span></h3>
+          <br>
+          <ion-button expand="block" fill="outline" shape="round" [routerLink]="['/login']">Join</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <swiper-container class="cons" [pagination]="true" [navigation]="true" [loop]="true" autoplay="true" effect="coverflow">
+        <swiper-slide class="slideSwipe"><img class="slides" src="../../assets/images/g1.jpg" alt="image1"></swiper-slide>
+        <swiper-slide class="slideSwipe"><img class="slides" src="../../assets/images/focusednetwork.jpg" alt="image2"></swiper-slide>
+        <swiper-slide class="slideSwipe"><img class="slides" src="../../assets/images/g3.jpg" alt="image3"></swiper-slide>
+      </swiper-container>
+  </ion-content>

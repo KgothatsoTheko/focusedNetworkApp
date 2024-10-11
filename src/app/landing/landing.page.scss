@@ -1,0 +1,25 @@
+// .cons {
+//     height: 550px;
+//   }
+
+  ion-button {
+    --background: #e51e92;
+    --color: #fff;
+    --background-activated: #000;
+    --background-focused: #000;
+  }
+
+  ion-button:active {
+    --background: #000;
+  }
+  ion-button:focus {
+    --background: #000;
+  }
+
+  .slideSwipe {
+    width: 100%;
+  }
+
+  .slides {
+    width: 100%;
+  }

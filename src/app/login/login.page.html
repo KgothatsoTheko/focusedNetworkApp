@@ -1,30 +1,31 @@
-<ion-header>
+
   <ion-toolbar>
     <ion-row class="ion-align-items-center ion-justify-content-center">
-      <img src="../../assets/focusNetwork-logo.png" width = "90px" alt="logo"/>
-      <ion-title class="ion-no-margin ion-text-center">Welcome To Focus Network</ion-title>
+      <!-- <ion-title class="ion-no-margin ion-text-center">Welcome To <span class="">Focused</span> Network</ion-title> -->
+       <span class="focused font-size-38px">Focused</span>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <span class="network margin-left-6px">NETWORK</span>
     </ion-row>
   </ion-toolbar>
-</ion-header>
+
 <ion-content class="ion-align-items-end" [fullscreen]="true">
-  <swiper-container class="cons" [pagination]="true" [navigation]="true">
-    <swiper-slide class="slideSwipe">Slide 1</swiper-slide>
-    <swiper-slide class="slideSwipe">Slide 2</swiper-slide>
-    <swiper-slide class="slideSwipe">Slide 3</swiper-slide>
-  </swiper-container>
+  <img class="full-width" src="../../assets/focusNetwork-logo.png" alt="logo"/>
   <ion-card class="ion-justify-content-center ion-padding magenta-bg black border-radius-20px">
-    <ion-col>
-    <ion-input mode="md" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Email">
-      <ion-icon slot="start" name="mail"></ion-icon>
-    </ion-input><br><br>
-    <ion-input mode="md" class="custom" type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
-      <ion-icon slot="start" name="lock-closed"></ion-icon>
-    </ion-input>
-    </ion-col>
-    <p class="ion-text-center white">Forgot Password?</p>
-    <ion-button expand="block" fill="outline" shape="round">Login</ion-button>
+    <form [formGroup]="loginForm">
+      <ion-col>
+        <ion-input formControlName="email" mode="md" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Email">
+          <ion-icon slot="start" name="mail"></ion-icon>
+        </ion-input><br><br>
+        <ion-input formControlName="password" mode="md" class="custom" type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
+          <ion-icon slot="start" name="lock-closed"></ion-icon>
+        </ion-input>
+        </ion-col>
+    </form>
+    <p class="ion-text-center pointer b">Forgot Password?</p>
+    <ion-button expand="block" fill="solid" shape="round" (click)="login()">Login</ion-button>
     <p class="ion-text-center white">Don't have an account?</p>
-    <p class="ion-text-center pointer b">Create an account</p>
+    <p class="ion-text-center pointer b" [routerLink]="['/register']">Create an account</p>
   </ion-card>
 </ion-content>
 
