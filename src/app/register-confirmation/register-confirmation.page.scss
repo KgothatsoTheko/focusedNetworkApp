@@ -1,0 +1,22 @@
+ion-input.custom {
+    --background: #fff;
+    --color: black;
+    --placeholder-color: black;
+    --border-radius: 15px;
+    --highlight-color: black;
+  }
+
+  ion-button {
+    --background: #e51e92;
+    --background-activated: black;
+    --color: #fff;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .image {
+    max-height: 60vh;
+    object-fit: contain;
+  }

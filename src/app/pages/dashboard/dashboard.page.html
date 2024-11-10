@@ -1,0 +1,20 @@
+<ion-content><br>
+    <div class="example-content">
+      <h3>Welcome, {{this.currentUser?.data.fullName}}🤗</h3>
+    </div><br>
+    <div class="ion-align-items-center ion-justify-content-between flex ion-wrap">
+      <div class="half-width text-center pointer" [routerLink]="['/home/mentors']">
+        <img src="../../../assets/images/mentor.png" alt="mentor"/>
+        <h4>Mentors</h4>
+      </div>
+      <div class="half-width text-center pointer" [routerLink]="['/home/meet-ups']">
+        <img src="../../../assets/images/meet-ups.png" alt="meet-ups"/>
+        <h4>Meet-Ups</h4>
+      </div>
+      <div class="half-width text-center pointer" [routerLink]="['/home/nuggets']">
+        <img src="../../../assets/images/nuggets.png" alt="nuggets"/>
+        <h4>Nuggets</h4>
+      </div>
+    </div>
+</ion-content>
+

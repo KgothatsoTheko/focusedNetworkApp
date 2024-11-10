@@ -11,3 +11,12 @@ ion-input.custom {
     --background-activated: #e51e92;
     --color: black;
   }
+
+  ion-button:active {
+    --background: #000;
+    --color: #fff;
+  }
+  ion-button:focus {
+    --background: #000;
+    --color: #fff;
+  }

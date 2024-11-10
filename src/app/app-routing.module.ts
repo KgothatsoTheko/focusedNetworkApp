@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
 
 const routes: Routes = [
   {
@@ -9,7 +10,29 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    component: HomePage,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+      },
+      {
+        path: 'mentors',
+        loadChildren: () => import('./pages/mentors/mentors.module').then( m => m.MentorsPageModule)
+      },
+      {
+        path: 'meet-ups',
+        loadChildren: () => import('./pages/meet-ups/meet-ups.module').then( m => m.MeetUpsPageModule)
+      },
+      {
+        path: 'nuggets',
+        loadChildren: () => import('./pages/nuggets/nuggets.module').then( m => m.NuggetsPageModule)
+      }
+    ]
   },
   {
     path: 'landing',
@@ -22,7 +45,12 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  }
+  },
+  {
+    path: 'register-confirmation',
+    loadChildren: () => import('./register-confirmation/register-confirmation.module').then( m => m.RegisterConfirmationPageModule)
+  },
+  
 ];
 
 @NgModule({

@@ -1,24 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private api: ApiService, private toastController: ToastController, private storage: Storage) { }
 
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   })
 
+  async ngOnInit() {
+    // Initialize Ionic Storage
+    await this.storage.create();
+  }
+
+  async presentToast(message: string, position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position,
+    });
+    toast.present();
+  }
+
 
   login() {
     console.log(this.loginForm.value);
+    const loginForm = this.loginForm.value
+    this.api.genericPost('login', loginForm).subscribe(
+      async (response) => {
+        console.log(`response: ${JSON.stringify(response)}`);
+        
+        // Ensure storage is initialized before setting data
+        // await this.storage.set('accessToken', response.token);
+        await this.storage.set('currentUser', response);
+
+       // Call the toast function with the response message and position
+       this.presentToast('Login successful!', 'bottom');
+        
+       // Navigate to confirmation page
+       this.router.navigate(['/home/dashboard']);
+     },
+     (error) => {
+      console.log(`Error: ${error}`);
+       // Show an error toast if registration fails
+       this.presentToast('Login failed. Please try again.', 'bottom');
+     }
+    )
   }
 
 }
