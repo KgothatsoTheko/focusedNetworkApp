@@ -1,13 +1,22 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>meet-ups</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">meet-ups</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="padding-10px border-box">
+      <div class="flex center-center">
+        <h3>Upcoming Events</h3>
+      </div>
+      <ion-card class="flex light-magenta-bg">
+            <ion-card-header class="half-width no-padding flex center-center">
+              <ion-card-title>12 Nov</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="full-width no-padding">
+              <ion-accordion-group>
+                <ion-accordion toggleIconSlot="start">
+                  <ion-item slot="header">
+                    <ion-label>Self Development (10:00 - 12:00)</ion-label>
+                  </ion-item>
+                  <div class="ion-padding light-magenta-bg" slot="content">Online meeting with Karabo Yende</div>
+                </ion-accordion>
+              </ion-accordion-group>
+            </ion-card-content>
+      </ion-card>
+  </div>
 </ion-content>

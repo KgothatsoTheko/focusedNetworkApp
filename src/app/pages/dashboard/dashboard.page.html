@@ -1,6 +1,9 @@
 <ion-content><br>
     <div class="example-content">
       <h3>Welcome, {{this.currentUser?.data.fullName}}🤗</h3>
+    </div>
+    <div class="example-content padding-10px border-box">
+      <img src="../../../assets/images/home-bar.png" alt="home-bar">
     </div><br>
     <div class="ion-align-items-center ion-justify-content-between flex ion-wrap">
       <div class="half-width text-center pointer" [routerLink]="['/home/mentors']">
@@ -14,6 +17,10 @@
       <div class="half-width text-center pointer" [routerLink]="['/home/nuggets']">
         <img src="../../../assets/images/nuggets.png" alt="nuggets"/>
         <h4>Nuggets</h4>
+      </div>
+      <div class="half-width text-center pointer">
+        <img src="../../../assets/images/feedback.png" alt="feedback"/>
+        <h4>Feedback</h4>
       </div>
     </div>
 </ion-content>

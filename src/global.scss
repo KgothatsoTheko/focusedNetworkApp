@@ -47,11 +47,16 @@ body {
 
 //colors
 $magenta: #e51e92;
+$light-magenta: #ffacec;
 $black: #000000;
 $white: #fff;
 
 .magenta-bg {
     background-color: $magenta;
+}
+
+.light-magenta-bg {
+  background-color: $light-magenta;
 }
 
 .magenta {
@@ -137,8 +142,11 @@ $white: #fff;
     font-weight: bold;
   }
 
-
   //margin
+
+  .no-margin {
+    margin: 0;
+  }
 
   .margin-left-6px {
     margin-left: 6px;
@@ -176,6 +184,10 @@ $white: #fff;
   }
 
   //padding 
+  .no-padding{
+    padding: 0;
+  }
+
   .padding-10px {
     padding: 10px;
   }

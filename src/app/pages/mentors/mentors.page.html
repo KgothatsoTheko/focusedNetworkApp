@@ -3,23 +3,31 @@
     <div class="example-content">
       <h3>Connect with our Mentors</h3>
     </div><br>
-  <ion-card>
+  <ion-card *ngFor="let item of mentors; let i = index">
     <div class="flex padding-10px border-box">
       <div class="ion-justify-content-center flex width-50">
-        <img class="round" alt="mentor1" src="../../../assets/images/mentor1.jpg" />
+        <img class="round" alt="mentor1" src={{item.profileImage}} />
       </div>
       <div class="flex column full-width">
         <ion-card-header>
-          <ion-card-title>Kgothatso Theko</ion-card-title>
+          <ion-card-title>{{item.fullName}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <ion-card-subtitle><strong>Bio:</strong></ion-card-subtitle>
-          <p>Software Engineer that writes code to solve a problem. Develops Mobile and Web applictaions</p>
+          <p>{{item.bio}}</p>
         </ion-card-content>
       </div>
     </div>
 
     <ion-button fill="clear">View Mentor</ion-button>
-    <ion-button fill="clear">Book Mentor</ion-button>
+    <ion-button fill="clear" [id]="'present-alert-' + i">Book Mentor</ion-button>
+
+    <!-- Alert for this specific mentor -->
+    <ion-alert
+      [trigger]="'present-alert-' + i"
+      [header]="'Are you sure you want to book ' + item.fullName"
+      [message]='"Next Appointment: " + item.availability[0].date + " " + item.availability[0].time '
+      [buttons]="alertButtons"
+    ></ion-alert>
   </ion-card>
 </ion-content>

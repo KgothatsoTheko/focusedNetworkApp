@@ -5,11 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './nuggets.page.html',
   styleUrls: ['./nuggets.page.scss'],
 })
-export class NuggetsPage implements OnInit {
+export class NuggetsPage {
+
+  selectedSegment: string = 'first'; // Default segment
 
   constructor() { }
 
-  ngOnInit() {
+  segmentChanged(event: any) {
+    this.selectedSegment = event.detail.value; // Update selected segment
   }
 
 }

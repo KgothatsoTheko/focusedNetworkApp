@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>nuggets</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">nuggets</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="padding-10px border-box">
+    <div class="flex center-center">
+      <h3>Sisterhood Knowledge 🧠</h3>
+    </div>
+    <ion-segment (ionChange)="segmentChanged($event)" value="first">
+      <ion-segment-button value="first">
+        <ion-label>Self Development</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="second">
+        <ion-label>Resource</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  
+    <!-- Content based on selected segment -->
+    <div *ngIf="selectedSegment === 'first'">
+      <div class="flex column center-center">
+        <h3>Information Center</h3>
+        <p>Insights, guides & mindful topics for our sisters</p>
+      </div>
+      <div class="padding-10px border-box magenta-bg">
+        <h4 class="text-center">Fighting Depression</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptate dignissimos reiciendis, voluptates nisi ducimus culpa. Incidunt aspernatur deleniti praesentium possimus aperiam doloribus, ipsa esse! Odit aliquam incidunt voluptates iste.</p>
+      </div>
+      <div class="box"></div>
+      
+    </div>
+    <div *ngIf="selectedSegment === 'second'">
+      <div class="flex center-center">
+        <h3>Gallery</h3>
+      </div>
+      <!-- Add images -->
+    </div>
+  </div>
 </ion-content>
