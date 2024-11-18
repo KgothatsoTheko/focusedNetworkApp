@@ -5,9 +5,23 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-item button>
-      <ion-label>Button Item</ion-label>
+    <ion-item button id="hover-trigger">
+      <ion-icon aria-hidden="true" name="shirt-outline" slot="start"></ion-icon>
+      <ion-label>T-shirts</ion-label>
     </ion-item>
+    <ion-item button (click)="goToBookings()">
+      <ion-icon aria-hidden="true" name="calendar-outline" slot="start"></ion-icon>
+      <ion-label>Bookings</ion-label>
+    </ion-item>
+    <ion-item button (click)="signOut()">
+      <ion-icon aria-hidden="true" name="log-out-outline" slot="start"></ion-icon>
+      <ion-label>Sign Out</ion-label>
+    </ion-item>
+    <ion-popover trigger="hover-trigger" triggerAction="hover">
+      <ng-template>
+        <ion-content class="ion-padding">Coming Soon</ion-content>
+      </ng-template>
+    </ion-popover>
   </ion-content>
 </ion-menu>
 <ion-header>

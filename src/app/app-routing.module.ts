@@ -31,7 +31,19 @@ const routes: Routes = [
       {
         path: 'nuggets',
         loadChildren: () => import('./pages/nuggets/nuggets.module').then( m => m.NuggetsPageModule)
-      }
+      },  
+      {
+        path: 'feedback',
+        loadChildren: () => import('./pages/feedback/feedback.module').then( m => m.FeedbackPageModule)
+      },
+      {
+        path: 'bookings',
+        loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
+      },
+      {
+        path: 'mentor-details/:id',
+        loadChildren: () => import('./pages/mentor-details/mentor-details.module').then( m => m.MentorDetailsPageModule)
+      },
     ]
   },
   {
@@ -50,7 +62,6 @@ const routes: Routes = [
     path: 'register-confirmation',
     loadChildren: () => import('./register-confirmation/register-confirmation.module').then( m => m.RegisterConfirmationPageModule)
   },
-  
 ];
 
 @NgModule({

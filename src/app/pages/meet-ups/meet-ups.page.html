@@ -1,19 +1,23 @@
 <ion-content>
   <div class="padding-10px border-box">
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
       <div class="flex center-center">
         <h3>Upcoming Events</h3>
       </div>
-      <ion-card class="flex light-magenta-bg">
+      <ion-card class="flex light-magenta-bg" *ngFor="let item of events">
             <ion-card-header class="half-width no-padding flex center-center">
-              <ion-card-title>12 Nov</ion-card-title>
+              <ion-card-title>{{ item.date.slice(0,10) | date: 'd MMM' }}</ion-card-title>
             </ion-card-header>
             <ion-card-content class="full-width no-padding">
               <ion-accordion-group>
                 <ion-accordion toggleIconSlot="start">
                   <ion-item slot="header">
-                    <ion-label>Self Development (10:00 - 12:00)</ion-label>
+                    <ion-label>{{item.title}} ({{item.time}})</ion-label>
                   </ion-item>
-                  <div class="ion-padding light-magenta-bg" slot="content">Online meeting with Karabo Yende</div>
+                  <div class="ion-padding light-magenta-bg" slot="content"><strong>Location:</strong> {{item.location}}</div>
+                  <div class="ion-padding light-magenta-bg" slot="content">{{item.additionalInfo}}</div>
                 </ion-accordion>
               </ion-accordion-group>
             </ion-card-content>

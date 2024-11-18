@@ -1,12 +1,15 @@
 <ion-content>
   <br>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
     <div class="example-content">
       <h3>Connect with our Mentors</h3>
     </div><br>
   <ion-card *ngFor="let item of mentors; let i = index">
     <div class="flex padding-10px border-box">
       <div class="ion-justify-content-center flex width-50">
-        <img class="round" alt="mentor1" src={{item.profileImage}} />
+        <img class="round" alt="mentor1" [src]="item.profileImage" />
       </div>
       <div class="flex column full-width">
         <ion-card-header>
@@ -19,15 +22,15 @@
       </div>
     </div>
 
-    <ion-button fill="clear">View Mentor</ion-button>
+    <ion-button fill="clear" [routerLink]="['/home/mentor-details', item._id]">View Mentor</ion-button>
     <ion-button fill="clear" [id]="'present-alert-' + i">Book Mentor</ion-button>
 
     <!-- Alert for this specific mentor -->
     <ion-alert
       [trigger]="'present-alert-' + i"
       [header]="'Are you sure you want to book ' + item.fullName"
-      [message]='"Next Appointment: " + item.availability[0].date + " " + item.availability[0].time '
-      [buttons]="alertButtons"
+      [message]='"Next Appointment: " + item.availability[0].date.slice(0,10) + " " + item.availability[0].time '
+      [buttons]="createAlertButtons(item)"
     ></ion-alert>
   </ion-card>
 </ion-content>

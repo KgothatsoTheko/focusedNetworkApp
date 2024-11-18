@@ -1,0 +1,28 @@
+<ion-content>
+  <div class="example-content relative">
+    <div class="absolute left-0p top-5px xx-large" (click)="goBack()">
+    <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    </div>
+    <h3>Mentor Details</h3>
+  </div>
+  <ion-card>
+    <div class="flex ion-align-items-center ion-justify-content-center">
+      <img [src]="mentor?.profileImage" alt="Profile Image" width="100%">
+    </div>
+    <ion-card-header>
+      <ion-card-title>{{ mentor?.fullName }}</ion-card-title>
+      <ion-card-subtitle><strong>Expertise:</strong> {{ mentor?.expertise }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Bio:</strong> {{ mentor?.bio }}</p>
+      <p><strong>Contact:</strong> {{ mentor?.contactInfo }}</p>
+      <p><strong>Availability:</strong></p>
+      <ul>
+        <li *ngFor="let slot of mentor?.availability">
+          <!-- {{ slot.date.slice(0,10) }} at {{ slot.time }} - {{ slot.isBooked ? 'Booked' : 'Available' }} -->
+          {{ slot.date.slice(0,10) }} at {{ slot.time }}
+        </li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
