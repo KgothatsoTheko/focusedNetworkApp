@@ -22,7 +22,7 @@
         <p>Insights, guides & mindful topics for our sisters</p>
       </div>
       <div *ngFor="let item of information">
-        <div class="padding-10px border-box magenta-bg">
+        <div class="padding-10px border-box magenta-bg white">
           <h4 class="text-center">{{item.title}}</h4>
           <p>{{item.description}}</p>
         </div>
@@ -37,8 +37,8 @@
       <!-- Add images -->
       <ion-grid>
         <ion-row>
-          <ion-col size="6" *ngFor="let image of galleryImages">
-            <img [src]="image" class="gallery-image fade-in" alt="Gallery image" />
+          <ion-col size="6" *ngFor="let image of gallery">
+            <img [src]="image.imageUrl" class="gallery-image fade-in" alt="Gallery image" />
           </ion-col>
         </ion-row>
       </ion-grid>

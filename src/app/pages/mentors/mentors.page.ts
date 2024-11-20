@@ -13,7 +13,7 @@ export class MentorsPage implements OnInit {
   mentors!:any
   currentUser:any
 
-  constructor(private storage: Storage, private api: ApiService,  private toastController: ToastController) { }
+  constructor(private storage: Storage, private api: ApiService, private toastController: ToastController) { }
 
   async ngOnInit() {
     this.api.genericGet('mentors').subscribe(

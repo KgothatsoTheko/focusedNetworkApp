@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -15,11 +16,9 @@ export class MeetUpsPage implements OnInit {
       this.api.genericGet('events').subscribe(
         (res)=> {
           this.events = res
-          console.log("All events", this.events);
         },
         (error) => {
-          console.log("Something went wrong...", error);
-          
+          this.presentToast(`Someting went wrong: ${error}`, 'bottom')
         }
       )
       event.target.complete();
@@ -28,17 +27,24 @@ export class MeetUpsPage implements OnInit {
 
   events!:any
 
-  constructor(private storage: Storage, private api: ApiService) { }
+  constructor(private api: ApiService, private toastController: ToastController) { }
+
+  async presentToast(message: string, position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position,
+    });
+    toast.present();
+  }
 
   async ngOnInit() {
     this.api.genericGet('events').subscribe(
       (res)=> {
         this.events = res
-        console.log("All events", this.events);
       },
       (error) => {
-        console.log("Something went wrong...", error);
-        
+        this.presentToast(`Someting went wrong: ${error}`, 'bottom')
       }
     )
 }

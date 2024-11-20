@@ -4,7 +4,25 @@
       <div class="absolute left-0p top-5px xx-large" (click)="goBack()">
       <ion-icon name="arrow-back-circle-outline"></ion-icon>
       </div>
-      <h3>Bookings</h3>
+      <h3>Your Bookings</h3>
+    </div>
+    <div *ngFor="let mentor of bookedMentors">
+      <ion-item>
+        <ion-avatar aria-hidden="true" slot="start">
+          <img alt="profile" [src]="mentor.profileImage" />
+        </ion-avatar>
+        <ion-label class="ion-text-nowrap">
+          <h1>{{mentor.fullName}}</h1>
+          <!-- Match booking data for this mentor -->
+          <div *ngFor="let booking of bookings">
+            <ng-container *ngIf="mentor._id === booking.mentorId">
+              <p><strong>Date:</strong> {{booking.date.slice(0, 10)}}</p>
+              <p><strong>Time:</strong> {{booking.time}}</p>
+              <p><strong>Status:</strong> {{booking.status}}</p>
+            </ng-container>
+          </div>
+        </ion-label>
+      </ion-item>
     </div>
     
   </div>

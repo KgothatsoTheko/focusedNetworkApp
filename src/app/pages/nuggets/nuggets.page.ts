@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -8,32 +8,41 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./nuggets.page.scss'],
 })
 export class NuggetsPage implements OnInit {
-  galleryImages = [
-    'https://focusednetwork.co.za/wp-content/uploads/2022/05/focusednetwork-2.jpg',
-    'https://focusednetwork.co.za/wp-content/uploads/2019/01/g4.jpg',
-    'https://focusednetwork.co.za/wp-content/uploads/2022/05/focusednetwork-3.jpg',
-    'https://focusednetwork.co.za/wp-content/uploads/2019/01/g2.jpg',
-    'https://focusednetwork.co.za/wp-content/uploads/2019/01/g1.jpg',
-    'https://focusednetwork.co.za/wp-content/uploads/2022/05/focusednetwork-1.jpg'
-  ];
+
+  gallery:any
 
   selectedSegment: string = 'first'; // Default segment
 
   information!:any
 
-  constructor(private storage: Storage, private api: ApiService) { }
+  constructor(private toastController: ToastController, private api: ApiService) { }
 
   async ngOnInit() {
     this.api.genericGet('information').subscribe(
       (res)=> {
         this.information = res
-        console.log("All information", this.information);
       },
       (error) => {
-        console.log("Something went wrong...", error);
-        
+        this.presentToast(`Someting went wrong: ${error}`, 'bottom')
       }
     )
+    this.api.genericGet('gallery').subscribe(
+      (res)=> {
+        this.gallery = res
+      },
+      (error) => {
+        this.presentToast(`Someting went wrong: ${error}`, 'bottom')
+      }
+    )
+  }
+
+  async presentToast(message: string, position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position,
+    });
+    toast.present();
   }
 
   handleRefresh(event:any) {
@@ -42,11 +51,17 @@ export class NuggetsPage implements OnInit {
       this.api.genericGet('information').subscribe(
         (res)=> {
           this.information = res
-          console.log("All information", this.information);
         },
         (error) => {
-          console.log("Something went wrong...", error);
-          
+          this.presentToast(`Someting went wrong: ${error}`, 'bottom')
+        }
+      )
+      this.api.genericGet('gallery').subscribe(
+        (res)=> {
+          this.gallery = res
+        },
+        (error) => {
+          this.presentToast(`Someting went wrong: ${error}`, 'bottom')
         }
       )
       event.target.complete();
