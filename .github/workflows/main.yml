@@ -29,7 +29,7 @@ jobs:
       run: npm install -g @ionic/cli
 
     - name: Build Ionic App
-      run: ionic build --prod
+      run: ionic build 
 
     - name: Install Capacitor Android
       run: npx cap add android
@@ -65,7 +65,7 @@ jobs:
       run: npm install -g @ionic/cli
 
     - name: Build Ionic App
-      run: ionic build --prod
+      run: ionic build
 
     - name: Install Capacitor iOS
       run: npx cap add ios
