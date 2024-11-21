@@ -1,4 +1,4 @@
-name: CI/CD for Ionic Project
+name: Build Android APK and AAB
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-android:
-    name: Build Android APK
+    name: Build Debug APK and AAB
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +22,6 @@ jobs:
       with:
         node-version: 18
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: 17
-        distribution: 'temurin'
-
     - name: Install Dependencies
       run: npm ci
 
@@ -35,70 +29,29 @@ jobs:
       run: npm install -g @ionic/cli
 
     - name: Build Ionic App
-      run: ionic build 
+      run: ionic build --configuration=debug
 
     - name: Install Capacitor Android
       run: npx cap add android
 
-    - name: Build Android
+    - name: Generate Debug APK
       run: |
         cd android
-        ./gradlew assembleRelease
+        ./gradlew assembleDebug
 
-    - name: Upload APK
+    - name: Generate AAB
+      run: |
+        cd android
+        ./gradlew bundleDebug
+
+    - name: Upload Debug APK
       uses: actions/upload-artifact@v3
       with:
-        name: app-release.apk
-        path: android/app/build/outputs/apk/release/app-release.apk
+        name: debug-app.apk
+        path: android/app/build/outputs/apk/debug/app-debug.apk
 
-  build-ios:
-    name: Build iOS App
-    runs-on: macos-12
-
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-    - name: Install Dependencies
-      run: npm ci
-
-    - name: Install Ionic CLI
-      run: npm install -g @ionic/cli
-
-    - name: Build Ionic App
-      run: ionic build
-
-    - name: Install Capacitor iOS
-      run: npx cap add ios
-
-    - name: Validate Xcode
-      run: |
-        xcode-select -p
-        xcodebuild -version
-        xcodebuild -showsdks
-
-    - name: Build iOS
-      run: |
-        cd ios/App
-        xcodebuild -workspace App.xcworkspace \
-                 -scheme App \
-                 -configuration Release \
-                 -sdk iphoneos \
-                 -destination 'generic/platform=iOS' \
-                 archive -archivePath ./App.xcarchive
-    - name: Export IPA
-      run: |
-       xcodebuild -exportArchive \
-                 -archivePath ./App.xcarchive \
-                 -exportPath ./output \
-                 -exportOptionsPlist ./ExportOptions.plist
-    - name: Upload IPA
+    - name: Upload Debug AAB
       uses: actions/upload-artifact@v3
       with:
-        name: app-release.ipa
-        path: ios/App/output/app-release.ipa
+        name: debug-app.aab
+        path: android/app/build/outputs/bundle/debug/app-debug.aab
