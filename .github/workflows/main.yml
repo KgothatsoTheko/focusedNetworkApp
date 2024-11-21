@@ -53,7 +53,7 @@ jobs:
 
   build-ios:
     name: Build iOS App
-    runs-on: macos-latest
+    runs-on: macos-12
 
     steps:
     - name: Checkout Code
@@ -76,15 +76,27 @@ jobs:
     - name: Install Capacitor iOS
       run: npx cap add ios
 
+    - name: Validate Xcode
+      run: |
+        xcode-select -p
+        xcodebuild -version
+        xcodebuild -showsdks
+
     - name: Build iOS
       run: |
         cd ios/App
-        xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos archive -archivePath ./App.xcarchive
-
+        xcodebuild -workspace App.xcworkspace \
+                 -scheme App \
+                 -configuration Release \
+                 -sdk iphoneos \
+                 -destination 'generic/platform=iOS' \
+                 archive -archivePath ./App.xcarchive
     - name: Export IPA
       run: |
-        xcodebuild -exportArchive -archivePath ./App.xcarchive -exportPath ./output -exportOptionsPlist ./ExportOptions.plist
-
+       xcodebuild -exportArchive \
+                 -archivePath ./App.xcarchive \
+                 -exportPath ./output \
+                 -exportOptionsPlist ./ExportOptions.plist
     - name: Upload IPA
       uses: actions/upload-artifact@v3
       with:
