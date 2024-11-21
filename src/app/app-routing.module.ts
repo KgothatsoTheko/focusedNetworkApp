@@ -44,6 +44,10 @@ const routes: Routes = [
         path: 'mentor-details/:id',
         loadChildren: () => import('./pages/mentor-details/mentor-details.module').then( m => m.MentorDetailsPageModule)
       },
+      {
+        path: 'mental',
+        loadChildren: () => import('./pages/mental/mental.module').then( m => m.MentalPageModule)
+      },
     ]
   },
   {

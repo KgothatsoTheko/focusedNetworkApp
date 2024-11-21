@@ -12,64 +12,64 @@ register();
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(private platform: Platform) {}
 
-  ngOnInit() {
-    this.platform.ready().then(() => {
-      this.initializePushNotifications().then(() => {
-        this.subscribeToMentorNotifications();
-      });
-    });
-  }
+  // ngOnInit() {
+  //   this.platform.ready().then(() => {
+  //     this.initializePushNotifications().then(() => {
+  //       this.subscribeToMentorNotifications();
+  //     });
+  //   });
+  // }
 
-  async initializePushNotifications() {
-    try {
-       // Request notification permissions (only for iOS or Android 12 and below)
-       const permission = await PushNotifications.requestPermissions();
+  // async initializePushNotifications() {
+  //   try {
+  //      // Request notification permissions (only for iOS or Android 12 and below)
+  //      const permission = await PushNotifications.requestPermissions();
 
-      if (permission.receive === 'granted') {
-        // Register for push notifications
-        await PushNotifications.register();
+  //     if (permission.receive === 'granted') {
+  //       // Register for push notifications
+  //       await PushNotifications.register();
 
-        // Handle token updates
-        PushNotifications.addListener('registration', (token: Token) => {
-          console.log('Push notification token:', token.value);
-        });
+  //       // Handle token updates
+  //       PushNotifications.addListener('registration', (token: Token) => {
+  //         console.log('Push notification token:', token.value);
+  //       });
 
-        PushNotifications.addListener('registrationError', (error) => {
-          console.error('Push notification registration error:', error);
-        });
+  //       PushNotifications.addListener('registrationError', (error) => {
+  //         console.error('Push notification registration error:', error);
+  //       });
 
-        PushNotifications.addListener('pushNotificationReceived', (notification) => {
-          console.log('Push notification received:', notification);
-        });
+  //       PushNotifications.addListener('pushNotificationReceived', (notification) => {
+  //         console.log('Push notification received:', notification);
+  //       });
 
-        PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
-          console.log('Push notification action performed:', notification);
-        });
+  //       PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+  //         console.log('Push notification action performed:', notification);
+  //       });
 
-        console.log('Push notifications initialized');
-      } else {
-        console.warn('Push notification permission denied');
-      }
-    } catch (error) {
-      console.error('Error initializing push notifications:', error);
-    }
-  }
+  //       console.log('Push notifications initialized');
+  //     } else {
+  //       console.warn('Push notification permission denied');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error initializing push notifications:', error);
+  //   }
+  // }
 
-  async subscribeToMentorNotifications() {
-    if (Capacitor.isNativePlatform()) {
-      try {
-        await FirebaseMessaging.subscribeToTopic({ topic: 'mentor' });
-        console.log('Subscribed to mentor topic');
-      } catch (error) {
-        console.error('Error subscribing to topic:', error);
-      }
-    } else {
-      console.warn('Push notifications are not available on this platform');
-    }
-  }
+  // async subscribeToMentorNotifications() {
+  //   if (Capacitor.isNativePlatform()) {
+  //     try {
+  //       await FirebaseMessaging.subscribeToTopic({ topic: 'mentor' });
+  //       console.log('Subscribed to mentor topic');
+  //     } catch (error) {
+  //       console.error('Error subscribing to topic:', error);
+  //     }
+  //   } else {
+  //     console.warn('Push notifications are not available on this platform');
+  //   }
+  // }
 
  
 }

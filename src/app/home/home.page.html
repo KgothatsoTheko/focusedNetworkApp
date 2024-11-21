@@ -1,7 +1,7 @@
-<ion-menu side="end" contentId="main-content">
+<ion-menu side="end" contentId="main-content" class="pop">
   <ion-header>
     <ion-toolbar>
-      <ion-title class="ion-text-center">Menu</ion-title>
+      <ion-title class="ion-text-center white">Menu</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
@@ -26,11 +26,16 @@
 </ion-menu>
 <ion-header>
   <ion-toolbar>
-    <div class="ion-align-items-center ion-justify-content-center gap-4em flex" id="main-content">
-    <div>
-      <img src="../../assets/focusNetwork-logo.png" alt="logo" height="65px">
+    <div class="ion-align-items-center ion-justify-content-center gap-2em flex" id="main-content">
+    <div class="flex gap-2em">
+      <div>
+        <img src="../../assets/focusNetwork-logo2-removebg-preview.png" alt="logo" height="65px">
+      </div>
+      <div class="margin-top-10p">
+        <p class="magenta font-size-21px no-margin text-center focused-text">Focused</p>
+        <p class="font-size-21px white no-margin text-center network-text">NETWORK</p>
+      </div>
     </div>
-    <p class="magenta font-size-21px text-center"><strong>Focused Network</strong></p>
     <ion-menu-toggle>
       <ion-button fill="clear">
         <ion-icon class="magenta" slot="icon-only" ios="ellipsis-vertical" md="ellipsis-vertical"></ion-icon>
@@ -39,7 +44,7 @@
     </div>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="pop">
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="dashboard">

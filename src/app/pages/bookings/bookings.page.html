@@ -1,8 +1,8 @@
 <ion-content>
-  <div class="padding-10px border-box">
-    <div class="example-content relative">
-      <div class="absolute left-0p top-5px xx-large" (click)="goBack()">
-      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+  <div class="padding-10px border-box pop">
+    <div class="example-content">
+      <div class=" xx-large" (click)="goBack()">
+      <ion-icon size="large" name="arrow-back-circle-outline"></ion-icon>
       </div>
       <h3>Your Bookings</h3>
     </div>
@@ -11,14 +11,14 @@
         <ion-avatar aria-hidden="true" slot="start">
           <img alt="profile" [src]="mentor.profileImage" />
         </ion-avatar>
-        <ion-label class="ion-text-nowrap">
-          <h1>{{mentor.fullName}}</h1>
+        <ion-label class="ion-text-wrap">
+          <h1> {{mentor.fullName}}</h1>
           <!-- Match booking data for this mentor -->
           <div *ngFor="let booking of bookings">
             <ng-container *ngIf="mentor._id === booking.mentorId">
-              <p><strong>Date:</strong> {{booking.date.slice(0, 10)}}</p>
-              <p><strong>Time:</strong> {{booking.time}}</p>
-              <p><strong>Status:</strong> {{booking.status}}</p>
+              <p class="font-size-20px"><strong>Date:</strong> {{booking.date.slice(0, 10)}}</p>
+              <p class="font-size-20px"><strong>Time:</strong> {{booking.time}}</p>
+              <p class="font-size-20px"><strong>Status:</strong> {{booking.status}}</p>
             </ng-container>
           </div>
         </ion-label>

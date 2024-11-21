@@ -1,9 +1,9 @@
-<ion-content><br>
+<ion-content class="pop"><br>
     <div class="example-content">
       <h3>Welcome, {{this.currentUser?.data.fullName}}🤗</h3>
     </div>
     <div class="example-content padding-10px border-box">
-      <img src="../../../assets/images/home-bar.png" alt="home-bar">
+      <img src="../../../assets/images/home-bar2.png" alt="home-bar">
     </div><br>
     <div class="ion-align-items-center ion-justify-content-between flex ion-wrap">
       <div class="half-width text-center pointer" [routerLink]="['/home/mentors']">
@@ -18,7 +18,7 @@
         <img src="../../../assets/images/nuggets.png" class="width-80p" alt="nuggets"/>
         <h4>Nuggets</h4>
       </div>
-      <div class="half-width text-center pointer">
+      <div class="half-width text-center pointer" [routerLink]="['/home/mental']">
         <img src="../../../assets/images/Mental Health.png" class="width-80p" alt="health"/>
         <h4>Mental Health</h4>
       </div>

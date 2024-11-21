@@ -1,14 +1,47 @@
 <ion-content>
-  <div class="padding-10px border-box">
-    <div class="example-content relative">
-      <div class="absolute left-0p top-5px xx-large" (click)="goBack()">
-      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+  <div class="padding-10px border-box pop">
+    <div class="example-content">
+      <div class="xx-large padding-10px border-box" (click)="goBack()">
+      <ion-icon size="large" class="xx-large" name="arrow-back-circle-outline"></ion-icon>
       </div>
       <h3>Give Feedback</h3>
     </div>
     <p class="larger">Help us make our sisterhood better by giving feedback on what to impove, add or change in our application:</p><br>
     <form [formGroup]="feedbackForm">
-    <ion-textarea [autoGrow]="true" fill="outline" label="Feedback" labelPlacement="floating" placeholder="Enter text" formControlName="description"></ion-textarea><br>
+      <ion-item>
+        <ion-label>Is the Focused Network App helpful to you?</ion-label>
+        <ion-radio-group formControlName="helpful">
+          <div class="flex gap-05em">
+              <ion-radio slot="start" value="Yes"></ion-radio>
+              <ion-label>Yes</ion-label>
+              <ion-radio slot="start" value="No"></ion-radio>
+              <ion-label>No</ion-label>
+          </div>
+        </ion-radio-group>
+      </ion-item>
+      <ion-item>
+        <ion-label>Is it easy to use?</ion-label>
+        <ion-radio-group formControlName="easyToUse">
+          <div class="flex gap-05em">
+            <ion-radio slot="start" value="Yes"></ion-radio>
+            <ion-label>Yes</ion-label>
+            <ion-radio slot="start" value="No"></ion-radio>
+            <ion-label>No</ion-label>
+        </div>
+        </ion-radio-group>
+      </ion-item>
+      <ion-item>
+        <ion-label>Would you recommend it to a friend?</ion-label>
+        <ion-radio-group formControlName="recommend">
+          <div class="flex gap-05em">
+            <ion-radio slot="start" value="Yes"></ion-radio>
+            <ion-label>Yes</ion-label>
+            <ion-radio slot="start" value="No"></ion-radio>
+            <ion-label>No</ion-label>
+        </div>
+        </ion-radio-group>
+      </ion-item><br>
+      <ion-textarea [autoGrow]="true" fill="outline" label="Additional comments (optional)" labelPlacement="floating" placeholder="Enter your comments" formControlName="comments"></ion-textarea><br>
     </form>
     <ion-button expand="block" fill="solid" shape="round" (click)="submit()">Submit Feedback</ion-button>
   </div>

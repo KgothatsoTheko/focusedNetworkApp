@@ -1,0 +1,71 @@
+<ion-content>
+  <div class="padding-10px border-box pop">
+    <div class="example-content">
+      <div class="xx-large padding-10px border-box" (click)="goBack()">
+      <ion-icon size="large" class="xx-large" name="arrow-back-circle-outline"></ion-icon>
+      </div>
+      <h4>Mental Health Check-up</h4>
+    </div>
+    <p class="larger">
+      Please take a moment to answer the following questions honestly to help us evaluate your mental health status:
+    </p><br>
+    <form [formGroup]="mentalHealthForm">
+      <ion-item>
+        <ion-label>Do you feel stressed often?</ion-label>
+        <ion-radio-group formControlName="stressLevel">
+           <div class="flex column gap-05em">
+            <div class="flex gap-05em">
+              <ion-radio slot="start" value="Never"></ion-radio>
+            <ion-label>Never</ion-label>
+            </div>
+            <div class="flex gap-05em">
+              <ion-radio slot="start" value="Sometimes"></ion-radio>
+            <ion-label>Sometimes</ion-label>
+            </div>
+            <div class="gap-05em flex">
+              <ion-radio slot="start" value="Often"></ion-radio>
+            <ion-label>Often</ion-label>
+            </div>
+            <div class="flex gap-05em">
+              <ion-radio slot="start" value="Always"></ion-radio>
+            <ion-label>Always</ion-label>
+            </div>
+           </div>
+        </ion-radio-group>
+      </ion-item>
+      <ion-item>
+        <ion-label>Do you get enough sleep?</ion-label>
+        <ion-radio-group formControlName="sleepQuality">       
+            <div class="flex gap-05em">
+              <ion-radio slot="start" value="Yes"></ion-radio>
+            <ion-label>Yes</ion-label>
+
+            <ion-radio slot="start" value="No"></ion-radio>
+            <ion-label>No</ion-label>
+            </div>
+        </ion-radio-group>
+      </ion-item>
+      <ion-item>
+        <ion-label>Do you have someone to talk to when feeling low?</ion-label>
+        <ion-radio-group formControlName="supportSystem">
+          <div class="flex gap-05em">
+            <ion-radio slot="start" value="Yes"></ion-radio>
+            <ion-label>Yes</ion-label>
+
+            <ion-radio slot="start" value="No"></ion-radio>
+            <ion-label>No</ion-label>
+          </div>
+        </ion-radio-group>
+      </ion-item><br>
+      <ion-textarea 
+        [autoGrow]="true" 
+        fill="outline" 
+        label="Additional comments (optional)" 
+        labelPlacement="floating" 
+        placeholder="How are you feeling?" 
+        formControlName="comments">
+      </ion-textarea><br>
+      <ion-button expand="block" fill="solid" shape="round" (click)="submit()">Submit</ion-button>
+    </form>
+  </div>
+</ion-content>

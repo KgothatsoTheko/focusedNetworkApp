@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="pop">
   <br>
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -9,7 +9,7 @@
   <ion-card *ngFor="let item of mentors; let i = index">
     <div class="flex padding-10px border-box">
       <div class="ion-justify-content-center flex width-50">
-        <img class="round" alt="mentor1" [src]="item.profileImage" />
+        <img class="round" alt="mentor1" [src]="item.profileImage" height="170px" width="130px" />
       </div>
       <div class="flex column full-width">
         <ion-card-header>

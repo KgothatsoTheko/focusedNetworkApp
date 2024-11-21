@@ -1,6 +1,6 @@
 
 <ion-toolbar>
-  <ion-row class="ion-align-items-center ion-justify-content-center">
+  <ion-row class="ion-align-items-center ion-justify-content-center pop">
     <!-- <ion-title class="ion-no-margin ion-text-center">Welcome To <span class="">Focused</span> Network</ion-title> -->
      <span class="font-size-38px margin-9px font-bold"><span class="focused font-size-38px">Sign up girl.</span>It's free.</span>
   </ion-row>
@@ -9,7 +9,7 @@
   </ion-row> -->
 </ion-toolbar>
 
-<ion-content class="ion-align-items-end" [fullscreen]="true">
+<ion-content class="ion-align-items-end pop" [fullscreen]="true">
 <img class="full-width" src="../../assets/images/focusednetwork-3.jpg" alt="image"/>
 <ion-card class="ion-justify-content-center ion-padding magenta-bg black border-radius-20px">
   <form [formGroup]="registerForm">
@@ -17,9 +17,16 @@
       <ion-input formControlName="fullName"  class="custom" type="text" label-placement="stacked" fill="outline" placeholder="Enter Your Full Name">
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
       </ion-input><br><br>
-      <ion-input formControlName="dateOfBirth" class="custom" type="date" label-placement="stacked" fill="outline" placeholder="Enter Your Date Of Birth">
-        <ion-icon slot="start" name="mail"></ion-icon>
-      </ion-input><br><br>
+      <ion-datetime 
+          formControlName="dateOfBirth" 
+          class="custom" 
+          label-placement="stacked" 
+          fill="outline" 
+          placeholder="Select Your Date of Birth" 
+          display-format="MMM DD, YYYY" 
+          picker-format="YYYY-MM-DD">
+          <ion-icon slot="start" name="calendar"></ion-icon>
+        </ion-datetime><br><br>
       <ion-input formControlName="email" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Your Email Address">
         <ion-icon slot="start" name="mail"></ion-icon>
       </ion-input><br><br>

@@ -2,6 +2,33 @@
   gap: 4em;
 }
 
+.gap-2em {
+  gap: 2em;
+}
+
+ion-toolbar {
+  --background:black;
+}
+
 ion-tab-bar {
   --color-selected: #e51e92;
+}
+
+.margin-top-10p {
+  margin-top: 8px;
+}
+
+.focused-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 700; /* Bold text */
+  line-height: 1.2;
+}
+
+.network-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 300; /* Slightly less bold */
+  line-height: 1.2;
+  letter-spacing: 6px;
 }

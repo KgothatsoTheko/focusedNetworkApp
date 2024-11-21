@@ -1,11 +1,12 @@
 <ion-content>
-  <div class="example-content relative">
-    <div class="absolute left-0p top-5px xx-large" (click)="goBack()">
+  <div class="example-content pop">
+    <div class="padding-10px border-box xx-large" size="large" (click)="goBack()">
     <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    <div class="flex-1"></div>
     </div>
     <h3>Mentor Details</h3>
   </div>
-  <ion-card>
+  <ion-card class="pop">
     <div class="flex ion-align-items-center ion-justify-content-center">
       <img [src]="mentor?.profileImage" alt="Profile Image" width="100%">
     </div>
