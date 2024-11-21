@@ -1,0 +1,86 @@
+name: CI/CD for Ionic Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-android:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Install Ionic CLI
+      run: npm install -g @ionic/cli
+
+    - name: Build Ionic App
+      run: ionic build --prod
+
+    - name: Install Capacitor Android
+      run: npx cap add android
+
+    - name: Build Android
+      run: |
+        cd android
+        ./gradlew assembleRelease
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release.apk
+        path: android/app/build/outputs/apk/release/app-release.apk
+
+  build-ios:
+    name: Build iOS App
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Install Ionic CLI
+      run: npm install -g @ionic/cli
+
+    - name: Build Ionic App
+      run: ionic build --prod
+
+    - name: Install Capacitor iOS
+      run: npx cap add ios
+
+    - name: Build iOS
+      run: |
+        cd ios/App
+        xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos archive -archivePath ./App.xcarchive
+
+    - name: Export IPA
+      run: |
+        xcodebuild -exportArchive -archivePath ./App.xcarchive -exportPath ./output -exportOptionsPlist ./ExportOptions.plist
+
+    - name: Upload IPA
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release.ipa
+        path: ios/App/output/app-release.ipa
