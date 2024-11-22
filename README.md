@@ -1,6 +1,5 @@
 # Focused Network Mobile Application
 
- *(Replace with the application logo URL if available)*
 ![focusNetwork-logo-removebg-preview](https://github.com/user-attachments/assets/c92898c3-721e-44db-89b1-788545d7c380)
 
 Focused Network Mobile Application is a cross-platform app built using the Ionic framework. It aims to address communication challenges faced by **Focused Network**, a South African NGO, in their mission to empower girls and young women through education, entrepreneurship, and personal growth. The app provides a centralized platform for announcements, mentorship sessions, event management, and community interaction.
