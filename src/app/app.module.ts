@@ -10,8 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
 
 @NgModule({

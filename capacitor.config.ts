@@ -7,11 +7,20 @@ const config: CapacitorConfig = {
   // ios: {
   //   contentInset: 'always',
   // },
-  // plugins: {
-  //   PushNotifications: {
-  //     presentationOptions: ['badge', 'sound', 'alert'], // For displaying notifications in the foreground
-  //   },
-  // },
+  plugins: {
+    // PushNotifications: {
+    //   presentationOptions: ['badge', 'sound', 'alert'], // For displaying notifications in the foreground
+    // },
+    SplashScreen: {
+      launchShowDuration: 3000,
+      backgroundColor: "#fff",
+      showSpinner: false,
+      androidSpinnerStyle: "small",
+      iosSpinnerStyle: "small",
+      splashFullScreen: true,
+      splashImmersive: true,
+    },
+  },
 };
 
 export default config;

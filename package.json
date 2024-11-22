@@ -33,6 +33,7 @@
     "@capacitor/ios": "^6.1.2",
     "@capacitor/keyboard": "6.0.2",
     "@capacitor/push-notifications": "^6.0.3",
+    "@capacitor/splash-screen": "^6.0.3",
     "@capacitor/status-bar": "6.0.1",
     "@fullcalendar/angular": "^6.1.15",
     "@fullcalendar/core": "^6.1.15",
