@@ -9,26 +9,39 @@
 <ion-card class="ion-justify-content-center ion-padding magenta-bg black border-radius-20px">
   <form [formGroup]="registerForm">
     <ion-col>
-      <ion-input formControlName="fullName"  class="custom" type="text" label-placement="stacked" fill="outline" placeholder="Enter Your Full Name">
+      <ion-input formControlName="fullName" required  class="custom" type="text" label-placement="stacked" fill="outline" placeholder="Enter Your Full Name">
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
-      </ion-input><br><br>
+      </ion-input>
+      <ion-note *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" color="warning">
+        Full name is <strong>required.</strong>
+      </ion-note><br><br>
       <ion-datetime 
           presentation="date"
           formControlName="dateOfBirth" 
           class="custom" 
           label-placement="stacked" 
           fill="outline" 
+          required
           placeholder="Select Your Date of Birth" 
           display-format="MMM DD, YYYY" 
           picker-format="YYYY-MM-DD">
           <ion-icon slot="start" name="calendar"></ion-icon>
-      </ion-datetime><br><br>
-      <ion-input formControlName="email" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Your Email Address">
+      </ion-datetime>
+      <ion-note *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched" color="warning">
+        Date of birth is <strong>required.</strong>
+      </ion-note><br><br>
+      <ion-input formControlName="email" class="custom" required type="email" label-placement="stacked" fill="outline" placeholder="Enter Your Email Address">
         <ion-icon slot="start" name="mail"></ion-icon>
-      </ion-input><br><br>
-      <ion-input formControlName="password" class="custom" type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
+      </ion-input>
+      <ion-note *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" color="warning">
+        Please enter a valid email.
+      </ion-note><br><br>
+      <ion-input formControlName="password" class="custom" required type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
         <ion-icon slot="start" name="lock-closed"></ion-icon>
       </ion-input>
+      <ion-note *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" color="warning">
+        Password must be at least 8 characters, include letters, numbers, and a special character(?; !;).
+      </ion-note>
       </ion-col>
   </form>
   <ion-button expand="block" fill="solid" shape="round" (click)="register()">SIGN UP</ion-button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ToastController } from '@ionic/angular';
@@ -14,10 +14,14 @@ export class RegisterPage  {
   constructor(private router: Router, private api: ApiService, private toastController: ToastController) { }
 
   registerForm = new FormGroup({
-    fullName: new FormControl(''),
-    dateOfBirth: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+    fullName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    dateOfBirth: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('',[
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),
+    ])
   })
 
   async presentToast(message: string, position: 'bottom') {
@@ -30,6 +34,10 @@ export class RegisterPage  {
   }
 
   register(){
+    if (this.registerForm.invalid) {
+      this.presentToast('Please fill in all fields correctly.', 'bottom');
+      return;
+    }
     console.log(this.registerForm.value);
     const registerForm = this.registerForm.value
     this.api.genericPost('register', registerForm).subscribe(

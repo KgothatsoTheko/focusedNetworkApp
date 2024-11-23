@@ -14,12 +14,18 @@
   <ion-card class="ion-justify-content-center ion-padding magenta-bg black border-radius-20px">
     <form [formGroup]="loginForm">
       <ion-col>
-        <ion-input formControlName="email" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Email">
+        <ion-input formControlName="email" class="custom" required type="email" label-placement="stacked" fill="outline" placeholder="Enter Email">
           <ion-icon slot="start" name="mail"></ion-icon>
-        </ion-input><br><br>
-        <ion-input formControlName="password" class="custom" type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
+        </ion-input>
+        <ion-note *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" color="warning">
+          Please enter your valid registered email.
+        </ion-note><br><br>
+        <ion-input formControlName="password" class="custom" required type="password" label-placement="stacked" fill="outline" placeholder="Enter Password">
           <ion-icon slot="start" name="lock-closed"></ion-icon>
         </ion-input>
+        <ion-note *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" color="warning">
+          Password must be at least 8 characters, include letters, numbers, and a special character(?; !;).
+        </ion-note>
         </ion-col>
     </form>
     <p class="ion-text-center pointer b">Forgot Password?</p>

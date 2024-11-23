@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ToastController } from '@ionic/angular';
@@ -15,8 +15,12 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private api: ApiService, private toastController: ToastController, private storage: Storage) { }
 
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/),
+    ]),
   })
 
   async ngOnInit() {
@@ -35,6 +39,10 @@ export class LoginPage implements OnInit {
 
 
   login() {
+    if (this.loginForm.invalid) {
+      this.presentToast('Please fill in all fields correctly.', 'bottom');
+      return;
+    }
     console.log(this.loginForm.value);
     const loginForm = this.loginForm.value
     this.api.genericPost('login', loginForm).subscribe(
