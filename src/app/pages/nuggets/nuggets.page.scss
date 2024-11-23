@@ -18,3 +18,21 @@ ion-segment-button {
     --color-checked: black; /* Text color when selected */
     --indicator-color: #e51e92; /* Indicator bar color */
   }
+
+  .ion-content-scroll-host::before,
+  .ion-content-scroll-host::after {
+    position: absolute;
+    
+    width: 1px;
+    height: 1px;
+    
+    content: "";
+  }
+  
+  .ion-content-scroll-host::before {
+    bottom: -1px;
+  }
+  
+  .ion-content-scroll-host::after {
+    top: -1px;
+  }

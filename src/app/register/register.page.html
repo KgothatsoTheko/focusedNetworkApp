@@ -1,12 +1,7 @@
-
 <ion-toolbar>
   <ion-row class="ion-align-items-center ion-justify-content-center pop">
-    <!-- <ion-title class="ion-no-margin ion-text-center">Welcome To <span class="">Focused</span> Network</ion-title> -->
      <span class="font-size-38px margin-9px font-bold"><span class="focused font-size-38px">Sign up girl.</span>It's free.</span>
   </ion-row>
-  <!-- <ion-row class="ion-align-items-center ion-justify-content-center">
-    <span class="network margin-left-6px">NETWORK</span>
-  </ion-row> -->
 </ion-toolbar>
 
 <ion-content class="ion-align-items-end pop" [fullscreen]="true">
@@ -18,6 +13,7 @@
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
       </ion-input><br><br>
       <ion-datetime 
+          presentation="date"
           formControlName="dateOfBirth" 
           class="custom" 
           label-placement="stacked" 
@@ -26,7 +22,7 @@
           display-format="MMM DD, YYYY" 
           picker-format="YYYY-MM-DD">
           <ion-icon slot="start" name="calendar"></ion-icon>
-        </ion-datetime><br><br>
+      </ion-datetime><br><br>
       <ion-input formControlName="email" class="custom" type="email" label-placement="stacked" fill="outline" placeholder="Enter Your Email Address">
         <ion-icon slot="start" name="mail"></ion-icon>
       </ion-input><br><br>
@@ -40,10 +36,3 @@
   <p class="ion-text-center pointer b" [routerLink]="['/login']">Login</p>
 </ion-card>
 </ion-content>
-
-<!-- <ion-footer>
-<ion-toolbar>
-  <ion-title class="ion-text-center">Footer</ion-title>
-</ion-toolbar>
-</ion-footer> -->
-

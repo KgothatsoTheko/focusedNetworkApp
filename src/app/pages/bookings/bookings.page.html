@@ -1,5 +1,11 @@
 <ion-content>
-  <div class="padding-10px border-box pop">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="chevron-down-circle-outline"
+    pullingText="Pull to refresh"
+    refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding-10px border-box pop ion-content-scroll-host">
     <div class="example-content">
       <div class=" xx-large" (click)="goBack()">
       <ion-icon size="large" name="arrow-back-circle-outline"></ion-icon>
@@ -19,6 +25,7 @@
               <p class="font-size-20px"><strong>Date:</strong> {{booking.date.slice(0, 10)}}</p>
               <p class="font-size-20px"><strong>Time:</strong> {{booking.time}}</p>
               <p class="font-size-20px"><strong>Status:</strong> {{booking.status}}</p>
+              <p class="font-size-20px"><strong>Where:</strong> {{booking.where}}</p>
             </ng-container>
           </div>
         </ion-label>

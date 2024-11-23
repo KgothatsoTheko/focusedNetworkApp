@@ -43,10 +43,10 @@ export class MentorsPage implements OnInit {
     setTimeout(() => {
       // Any calls to load data go here
       this.api.genericGet('mentors').subscribe(
-        (res)=> {
+        (res:any)=> {
           this.mentors = res
         },
-        (error) => {
+        (error:any) => {
           this.presentToast(`Something went wrong: ${error.error}`, 'bottom');
         }
       )

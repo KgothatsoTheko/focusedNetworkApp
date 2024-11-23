@@ -38,9 +38,7 @@ export class LoginPage implements OnInit {
     console.log(this.loginForm.value);
     const loginForm = this.loginForm.value
     this.api.genericPost('login', loginForm).subscribe(
-      async (response) => {
-        console.log(`response: ${JSON.stringify(response)}`);
-        
+      async (response:any) => {
         // Ensure storage is initialized before setting data
         // await this.storage.set('accessToken', response.token);
         await this.storage.set('currentUser', response);
@@ -51,10 +49,10 @@ export class LoginPage implements OnInit {
        // Navigate to confirmation page
        this.router.navigate(['/home/dashboard']);
      },
-     (error) => {
-      console.log(`Error: ${error}`);
+     (error:any) => {
+      console.log(`Error: ${error.error}`);
        // Show an error toast if registration fails
-       this.presentToast('Login failed. Please try again.', 'bottom');
+       this.presentToast(`Login failed. ${error.error}.`, 'bottom');
      }
     )
   }

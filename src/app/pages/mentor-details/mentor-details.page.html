@@ -1,7 +1,7 @@
 <ion-content>
   <div class="example-content pop">
-    <div class="padding-10px border-box xx-large" size="large" (click)="goBack()">
-    <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    <div class="padding-10px border-box xx-large" (click)="goBack()">
+    <ion-icon size="large" name="arrow-back-circle-outline"></ion-icon>
     <div class="flex-1"></div>
     </div>
     <h3>Mentor Details</h3>
@@ -16,7 +16,6 @@
     </ion-card-header>
     <ion-card-content>
       <p><strong>Bio:</strong> {{ mentor?.bio }}</p>
-      <p><strong>Contact:</strong> {{ mentor?.contactInfo }}</p>
       <p><strong>Availability:</strong></p>
       <ul>
         <li *ngFor="let slot of mentor?.availability">

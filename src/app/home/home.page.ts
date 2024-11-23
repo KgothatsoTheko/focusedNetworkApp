@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 
@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage {
 
-  constructor(private storage: Storage, private router: Router, private toastController: ToastController) {}
+  constructor(private storage: Storage, private router: Router, private toastController: ToastController, private menuController: MenuController) {}
 
   async signOut() {
     // Clear storage
@@ -31,6 +31,7 @@ export class HomePage {
 
   goToBookings(){
     this.router.navigate(['/home/bookings']);
+    this.menuController.close()
   }
 
 }

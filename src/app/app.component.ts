@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
-import { FirebaseMessaging } from '@capacitor-firebase/messaging';
-import { PushNotifications, Token } from '@capacitor/push-notifications';
+// import { FirebaseMessaging } from '@capacitor-firebase/messaging';
+// import { PushNotifications, Token } from '@capacitor/push-notifications';
 import { Platform } from '@ionic/angular';
-import { Capacitor } from '@capacitor/core';
+// import { Capacitor } from '@capacitor/core';
 
 register();
 
@@ -13,6 +13,7 @@ register();
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  
   constructor(private platform: Platform) {}
 
   // ngOnInit() {

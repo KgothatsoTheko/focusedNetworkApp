@@ -33,7 +33,7 @@ export class RegisterPage  {
     console.log(this.registerForm.value);
     const registerForm = this.registerForm.value
     this.api.genericPost('register', registerForm).subscribe(
-      (response)=> {
+      (response:any)=> {
         console.log(`response: ${response}`);
         
        // Call the toast function with the response message and position
@@ -42,10 +42,10 @@ export class RegisterPage  {
        // Navigate to confirmation page
        this.router.navigate(['/register-confirmation']);
      },
-     (error) => {
-      console.log(`Error: ${error}`);
+     (error:any) => {
+      console.log(`Error: ${error.error}`);
        // Show an error toast if registration fails
-       this.presentToast('Registration failed. Please try again.', 'bottom');
+       this.presentToast(`Registration failed: ${error.error}.`, 'bottom');
      }
     )
   }

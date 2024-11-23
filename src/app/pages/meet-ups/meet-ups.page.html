@@ -1,8 +1,11 @@
 <ion-content>
-  <div class="padding-10px border-box pop">
-    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="chevron-down-circle-outline"
+    pullingText="Pull to refresh"
+    refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding-10px border-box pop ion-content-scroll-host">
       <div class="flex center-center">
         <h3>Upcoming Events</h3>
       </div>

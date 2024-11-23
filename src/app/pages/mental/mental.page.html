@@ -13,22 +13,26 @@
       <ion-item>
         <ion-label>Do you feel stressed often?</ion-label>
         <ion-radio-group formControlName="stressLevel">
-           <div class="flex column gap-05em">
-            <div class="flex gap-05em">
-              <ion-radio slot="start" value="Never"></ion-radio>
-            <ion-label>Never</ion-label>
+           <div class="flex row gap-05em">
+            <div class="column flex gap-05em">
+              <div class="flex gap-05em">
+                <ion-radio slot="start" value="Never"></ion-radio>
+              <ion-label>Never</ion-label>
+              </div>
+              <div class="flex gap-05em">
+                <ion-radio slot="start" value="Sometimes"></ion-radio>
+              <ion-label>Sometimes</ion-label>
+              </div>
             </div>
-            <div class="flex gap-05em">
-              <ion-radio slot="start" value="Sometimes"></ion-radio>
-            <ion-label>Sometimes</ion-label>
-            </div>
-            <div class="gap-05em flex">
-              <ion-radio slot="start" value="Often"></ion-radio>
-            <ion-label>Often</ion-label>
-            </div>
-            <div class="flex gap-05em">
-              <ion-radio slot="start" value="Always"></ion-radio>
-            <ion-label>Always</ion-label>
+            <div class="flex column gap-05em">
+              <div class="gap-05em flex">
+                <ion-radio slot="start" value="Often"></ion-radio>
+              <ion-label>Often</ion-label>
+              </div>
+              <div class="flex gap-05em">
+                <ion-radio slot="start" value="Always"></ion-radio>
+              <ion-label>Always</ion-label>
+              </div>
             </div>
            </div>
         </ion-radio-group>
