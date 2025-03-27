@@ -8,7 +8,7 @@
   </div>
   <ion-card class="pop">
     <div class="flex ion-align-items-center ion-justify-content-center">
-      <img [src]="mentor?.profileImage" alt="Profile Image" width="100%">
+      <img [src]="'https://focus-network-server.vercel.app/api/get-file/' + mentor?.file.id" alt="Profile Image" width="100%">
     </div>
     <ion-card-header>
       <ion-card-title>{{ mentor?.fullName }}</ion-card-title>

@@ -15,7 +15,7 @@
     <div *ngFor="let mentor of bookedMentors">
       <ion-item>
         <ion-avatar aria-hidden="true" slot="start">
-          <img alt="profile" [src]="mentor.profileImage" />
+          <img alt="profile" [src]="'https://focus-network-server.vercel.app/api/get-file/' + mentor.file.id" />
         </ion-avatar>
         <ion-label class="ion-text-wrap">
           <h1> {{mentor.fullName}}</h1>

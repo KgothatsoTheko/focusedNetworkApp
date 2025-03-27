@@ -41,7 +41,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6" *ngFor="let image of gallery">
-            <img [src]="image.imageUrl" class="gallery-image fade-in" alt="Gallery image" />
+            <img [src]="'https://focus-network-server.vercel.app/api/get-file/' + image.id" class="gallery-image fade-in" alt="Gallery image" />
           </ion-col>
         </ion-row>
       </ion-grid>

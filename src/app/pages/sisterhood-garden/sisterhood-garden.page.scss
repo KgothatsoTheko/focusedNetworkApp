@@ -1,0 +1,14 @@
+ion-button {
+  --background: black;
+  --background-activated: #e51e92;
+  --color: #fff;
+}
+
+ion-button:active {
+  --background: white;
+  --color: black;
+}
+ion-button:focus {
+  --color: #000;
+  --background: #fff;
+}

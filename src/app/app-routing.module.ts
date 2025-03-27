@@ -48,6 +48,10 @@ const routes: Routes = [
         path: 'mental',
         loadChildren: () => import('./pages/mental/mental.module').then( m => m.MentalPageModule)
       },
+      {
+        path: 'sisterhood-garden',
+        loadChildren: () => import('./pages/sisterhood-garden/sisterhood-garden.module').then( m => m.SisterhoodGardenPageModule)
+      },
     ]
   },
   {

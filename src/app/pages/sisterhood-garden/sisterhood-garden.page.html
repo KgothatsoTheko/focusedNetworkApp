@@ -1,0 +1,37 @@
+<ion-content class="pop">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+    pullingIcon="chevron-down-circle-outline"
+    pullingText="Pull to refresh"
+    refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+  <div class="padding-10px flex column full-width border-box pop ion-content-scroll-host">
+    <ion-card class="padding-10px border-box text-center">
+<!-- <ion-chip [color]="getChipColor()">
+            {{ getChipText() }}
+      </ion-chip> -->
+      <img alt="Logo" src="../../../assets/focusNetwork-logo-removebg-preview.png" />
+      <ion-card-header>
+        <ion-card-title>What's On In The Sisterhood Garden</ion-card-title>
+        <ion-card-subtitle>
+          <div class="flex column">
+          <p>Notification will be sent when a session is live</p>
+          </div>
+      </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><small>Join the session and connect with your fellow sisters</small></p>
+      </ion-card-content>
+      <ion-button expand="block" shape="round" (click)="joinRoom()" *ngIf="!isInRoom">Join</ion-button> 
+      <ion-button expand="block" shape="round" (click)="leaveRoom()" *ngIf="isInRoom">Leave</ion-button> 
+      <ion-button
+        expand="block"
+        shape="round"
+        (click)="toggleMute()"
+        *ngIf="isInRoom"
+      >
+        <ion-icon [name]="isMuted ? 'mic-off' : 'mic'"></ion-icon> {{ isMuted ? 'Unmute' : 'Mute' }}
+      </ion-button>
+    </ion-card> 
+  </div>
+</ion-content>

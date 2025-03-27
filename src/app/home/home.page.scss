@@ -14,15 +14,16 @@ ion-tab-bar {
   --color-selected: #e51e92;
 }
 
-.margin-top-10p {
-  margin-top: 8px;
+.margin-top-5p {
+  margin-top: 5px;
 }
 
 .focused-text {
   font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 700; /* Bold text */
+  font-size: 30px;
+  font-weight: 500; /* Bold text */
   line-height: 1.2;
+  letter-spacing: 1px;
 }
 
 .network-text {
@@ -30,5 +31,5 @@ ion-tab-bar {
   font-size: 22px;
   font-weight: 300; /* Slightly less bold */
   line-height: 1.2;
-  letter-spacing: 6px;
+  letter-spacing: 10px;
 }

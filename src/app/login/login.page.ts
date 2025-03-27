@@ -43,7 +43,6 @@ export class LoginPage implements OnInit {
       this.presentToast('Please fill in all fields correctly.', 'bottom');
       return;
     }
-    console.log(this.loginForm.value);
     const loginForm = this.loginForm.value
     this.api.genericPost('login', loginForm).subscribe(
       async (response:any) => {

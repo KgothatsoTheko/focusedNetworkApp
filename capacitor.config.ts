@@ -8,9 +8,9 @@ const config: CapacitorConfig = {
   //   contentInset: 'always',
   // },
   plugins: {
-    // PushNotifications: {
-    //   presentationOptions: ['badge', 'sound', 'alert'], // For displaying notifications in the foreground
-    // },
+    PushNotifications: {
+      presentationOptions: ['badge', 'sound', 'alert'], // For displaying notifications in the foreground
+    },
     SplashScreen: {
       launchShowDuration: 3000,
       backgroundColor: "#fff",
