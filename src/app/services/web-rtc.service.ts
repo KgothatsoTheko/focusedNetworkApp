@@ -12,11 +12,25 @@ export class WebRTCService {
   private peerConnections: { [key: string]: RTCPeerConnection } = {};
   private peerConnection1!: RTCPeerConnection;
   private attendeesCount = new BehaviorSubject<number>(0);
+  private isMuted = new BehaviorSubject<boolean>(true);
 
   constructor() {
     // this.socket = io('http://localhost:8899'); // Update with your backend URL
     this.socket = io('https://focusnetworkserver.onrender.com');
 
+    this.socket.on('unmute-response', (data) => {
+      if (data.approved) {
+        this.isMuted.next(false); // Unmute the user
+      } else {
+        this.isMuted.next(true) // Keep them muted
+        console.log("Unmute request denied");
+      }
+    });
+
+  }
+
+  getResponse() {
+    return this.isMuted.asObservable();
   }
 
   async requestMicrophonePermission() {
@@ -74,6 +88,16 @@ export class WebRTCService {
     });
   }
 
+  requestUnmute(roomId: string) {
+   this.socket.emit('request-unmute', roomId);
+  
+  this.socket.on('unmute-response', (data) => {
+    if (data.approved) {
+      this.isMuted.next(false); // Unmute user
+    }
+  });
+  }
+
   private getPeerConnection(id: string): RTCPeerConnection {
     if (!this.peerConnections[id]) {
       const pc = new RTCPeerConnection();
@@ -125,6 +149,10 @@ export class WebRTCService {
       track.enabled = !mute;
     });
   }
+
+  notifyMuteState(roomId: string, isMuted: boolean) {
+    this.socket.emit('mute-toggle', { roomId, isMuted });
+}
 
   leaveRoom(roomId: string) {
     this.socket.emit('leave-room', roomId);

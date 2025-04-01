@@ -15,7 +15,10 @@
       <ion-note *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" color="warning">
         Full name is <strong>required.</strong>
       </ion-note><br><br>
-      <ion-datetime 
+      <ion-input formControlName="dateOfBirth" placeholder="Select Your Date of Birth" label="Select Your Date of Birth" required  class="custom" type="date" label-placement="stacked" fill="outline">
+        <ion-icon slot="start" name="calendar"></ion-icon>
+      </ion-input>
+      <!-- <ion-datetime 
           presentation="date"
           formControlName="dateOfBirth" 
           class="custom" 
@@ -26,7 +29,7 @@
           display-format="MMM DD, YYYY" 
           picker-format="YYYY-MM-DD">
           <ion-icon slot="start" name="calendar"></ion-icon>
-      </ion-datetime>
+      </ion-datetime> -->
       <ion-note *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched" color="warning">
         Date of birth is <strong>required.</strong>
       </ion-note><br><br>

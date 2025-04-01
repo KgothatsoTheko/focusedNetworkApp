@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +32,10 @@ export class HomePage {
   goToBookings(){
     this.router.navigate(['/home/bookings']);
     this.menuController.close()
+  }
+
+  async openTshirt(){
+    await Browser.open({url: 'https://focusednetwork.co.za/shop/'})
   }
 
 }

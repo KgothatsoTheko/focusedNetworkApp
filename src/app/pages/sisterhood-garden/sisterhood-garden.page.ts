@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { WebRTCService } from 'src/app/services/web-rtc.service';
@@ -8,23 +8,23 @@ import { WebRTCService } from 'src/app/services/web-rtc.service';
   templateUrl: './sisterhood-garden.page.html',
   styleUrls: ['./sisterhood-garden.page.scss'],
 })
-export class SisterhoodGardenPage {
+export class SisterhoodGardenPage implements OnInit {
   roomId = 'sisterhood-room';
   isInRoom = false;
   meetUps!:any
-  isMuted = false;
+  isMuted = true;
   attendeesCount:number = 0;
 
-  constructor(private webrtcService: WebRTCService, private api: ApiService, private toastController: ToastController) {}
+  constructor(private webrtcService: WebRTCService, private cdr: ChangeDetectorRef, private api: ApiService, private toastController: ToastController) {}
 
-  // ngOnInit() {
-  //   // Listen for attendee count updates
-  //   this.webrtcService.getAttendeesCount().subscribe((count) => {
-  //     this.attendeesCount = count;
-  //     console.log(this.attendeesCount);
-      
-  //   });
-  // }
+  ngOnInit() {
+    // Listen for unmote response count 
+    this.webrtcService.getResponse().subscribe((muted) => {
+      this.isMuted = muted;
+      console.log(this.isMuted);
+      this.cdr.detectChanges()
+    });
+  }
 
   async presentToast(message: string, position: 'bottom') {
     const toast = await this.toastController.create({
@@ -52,12 +52,23 @@ export class SisterhoodGardenPage {
     this.webrtcService.leaveRoom(this.roomId);
     this.isInRoom = false;
   }
-  
+
   toggleMute() {
-    this.isMuted = !this.isMuted;
-  this.webrtcService.muteAudio(this.isMuted);
-  console.log(`Microphone is now ${this.isMuted ? 'Muted' : 'Unmuted'}`);
+  if (this.isMuted) {
+    this.webrtcService.requestUnmute(this.roomId);
+    this.cdr.detectChanges()
+  } else {
+    this.webrtcService.muteAudio(true); // Actually mute the audio
+    this.isMuted = true;
+    this.cdr.detectChanges(); // Ensure UI updates
   }
+}
+  
+  // toggleMute() {
+  //   this.isMuted = !this.isMuted;
+  // this.webrtcService.muteAudio(this.isMuted);
+  // console.log(`Microphone is now ${this.isMuted ? 'Muted' : 'Unmuted'}`);
+  // }
 
   handleRefresh(event:any) {
     setTimeout(() => {
