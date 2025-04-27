@@ -15,9 +15,9 @@
       <ion-note *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" color="warning">
         Full name is <strong>required.</strong>
       </ion-note><br><br>
-      <ion-input formControlName="dateOfBirth" placeholder="Select Your Date of Birth" label="Select Your Date of Birth" required  class="custom" type="date" label-placement="stacked" fill="outline">
-        <ion-icon slot="start" name="calendar"></ion-icon>
-      </ion-input>
+        <ion-input formControlName="dateOfBirth" label="Select Date of Birth" required  class="custom" type="date" fill="outline">
+          <ion-icon slot="start" name="calendar"></ion-icon>
+        </ion-input>
       <!-- <ion-datetime 
           presentation="date"
           formControlName="dateOfBirth" 

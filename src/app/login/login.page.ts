@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private api: ApiService, private toastController: ToastController, private storage: Storage) { }
+  constructor(private router: Router, private api: ApiService, private loadingController: LoadingController, private toastController: ToastController, private storage: Storage) { }
 
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
@@ -37,15 +37,27 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
+  async presentLoading(message: string) {
+    const loading = await this.loadingController.create({
+      message: message,
+      spinner: 'crescent',
+      duration: 7000, // Optional: auto-dismiss after 5 seconds
+    });
+    await loading.present();
+    return loading;
+  }
 
-  login() {
+
+  async login() {
     if (this.loginForm.invalid) {
       this.presentToast('Please fill in all fields correctly.', 'bottom');
       return;
     }
     const loginForm = this.loginForm.value
+    const loading = await this.presentLoading('Logging in...');
     this.api.genericPost('login', loginForm).subscribe(
       async (response:any) => {
+        await loading.dismiss();
         // Ensure storage is initialized before setting data
         // await this.storage.set('accessToken', response.token);
         await this.storage.set('currentUser', response);
@@ -55,8 +67,10 @@ export class LoginPage implements OnInit {
         
        // Navigate to confirmation page
        this.router.navigate(['/home/dashboard']);
+       this.loginForm.reset()
      },
-     (error:any) => {
+     async (error:any) => {
+      await loading.dismiss();
       console.log(`Error: ${error.error}`);
        // Show an error toast if registration fails
        this.presentToast(`Login failed. ${error.error}.`, 'bottom');

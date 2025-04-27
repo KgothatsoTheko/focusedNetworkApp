@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { Capacitor } from '@capacitor/core';
+import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
@@ -13,20 +15,43 @@ export class WebRTCService {
   private peerConnection1!: RTCPeerConnection;
   private attendeesCount = new BehaviorSubject<number>(0);
   private isMuted = new BehaviorSubject<boolean>(true);
+  currentUser:any
 
-  constructor() {
+  constructor(private storage:Storage, private toastController: ToastController) {
     // this.socket = io('http://localhost:8899'); // Update with your backend URL
     this.socket = io('https://focusnetworkserver.onrender.com');
 
     this.socket.on('unmute-response', (data) => {
-      if (data.approved) {
+      console.log('admin response', data)
+      if (data.approved == true) {
         this.isMuted.next(false); // Unmute the user
+        this.muteAudio(false)
+        console.log("Unmute request approved");
       } else {
         this.isMuted.next(true) // Keep them muted
         console.log("Unmute request denied");
       }
     });
 
+    this.socket.on('session-ended', (data) => {
+      this.presentToast(data.message, 'bottom')
+      location.reload()
+    });
+
+  }
+
+  async presentToast(message: string, position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position,
+    });
+    toast.present();
+  }
+
+  private async init() {
+    await this.storage.create();
+    this.currentUser = await this.storage.get('currentUser');
   }
 
   getResponse() {
@@ -53,13 +78,22 @@ export class WebRTCService {
     try {
       await this.requestMicrophonePermission();
       this.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+       // Mute the audio track initially
+    this.localStream.getAudioTracks().forEach(track => {
+      track.enabled = false; // Mute initially
+    });
+
+    this.isMuted.next(true); // Update BehaviorSubject
     } catch (error) {
       console.error('Error initializing local stream:', error);
       throw error;
     }
   }
 
-  joinRoom(roomId: string) {
+  async joinRoom(roomId: string) {
+    await this.init(); // Ensure currentUser is loaded
+    await this.initializeLocalStream(); // <- Ensure stream is ready and muted
     this.socket.emit('join-room', roomId);
 
     this.socket.on('user-joined', (data) => {
@@ -86,16 +120,26 @@ export class WebRTCService {
         delete this.peerConnections[id];
       }
     });
+
+    // Make sure currentUser is loaded before using
+  if (this.currentUser && this.currentUser.data?.fullName) {
+    this.socket.emit('register-user', {
+      name: this.currentUser.data.fullName
+    });
+  } else {
+    console.warn('Current user not loaded yet');
+  }
+    
   }
 
   requestUnmute(roomId: string) {
    this.socket.emit('request-unmute', roomId);
   
-  this.socket.on('unmute-response', (data) => {
-    if (data.approved) {
-      this.isMuted.next(false); // Unmute user
-    }
-  });
+  // this.socket.on('unmute-response', (data) => {
+  //   if (data.approved) {
+  //     this.isMuted.next(false); // Unmute user
+  //   }
+  // });
   }
 
   private getPeerConnection(id: string): RTCPeerConnection {

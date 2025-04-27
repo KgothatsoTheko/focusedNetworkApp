@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.FourWMInnovations.focusNetworkApp',
-  appName: 'focusNetworkApp',
+  appName: 'Focused Network',
   webDir: 'www',
   // ios: {
   //   contentInset: 'always',

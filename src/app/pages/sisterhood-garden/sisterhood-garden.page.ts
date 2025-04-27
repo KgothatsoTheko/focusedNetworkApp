@@ -43,8 +43,8 @@ export class SisterhoodGardenPage implements OnInit {
   //   return this.attendeesCount === 0 ? 'danger' : 'success';
   // }
 
-  joinRoom() {
-    this.webrtcService.joinRoom(this.roomId);
+  async joinRoom() {
+    await this.webrtcService.joinRoom(this.roomId);
     this.isInRoom = true;
   }
   
@@ -70,19 +70,9 @@ export class SisterhoodGardenPage implements OnInit {
   // console.log(`Microphone is now ${this.isMuted ? 'Muted' : 'Unmuted'}`);
   // }
 
-  handleRefresh(event:any) {
+  handleRefresh(event: any) {
     setTimeout(() => {
-      // Any calls to load data go here
-      this.api.genericGet('events').subscribe(
-        (res)=> {
-          this.meetUps = res
-          window.location.reload()
-        },
-        (error) => {
-          this.presentToast(`Someting went wrong: ${error}`, 'bottom')
-        }
-      )
-      event.target.complete();
-    }, 2000);
+      location.reload(); // This reloads the entire page
+    }, 2000); // You can skip the timeout if you want it instantly
   }
 }
